@@ -1,4 +1,5 @@
 import * as types from './ActionTypes';
+import Data from '../../asset/data/data';
 
 export const addNewProduct = (data) => {
     const { name, description, price, qty, imageurl } = data;
@@ -62,7 +63,7 @@ export const searchProduct = (searchInput) => {
             return dispatch({ type: types.SEARCH_PRODUCT, payload: filteredData });
         }
         else {
-            return dispatch({ type: types.SEARCH_PRODUCT, payload: productDetails });
+            return dispatch({ type: types.SEARCH_PRODUCT, payload: Data });
         }
     }
 }

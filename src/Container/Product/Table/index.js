@@ -55,7 +55,6 @@ class Table extends React.Component {
     }
 
     inputHandler = (name, e) => {
-        console.log('c', e.target.value)
         this.setState({ [name]: e.target.value });
     }
 
