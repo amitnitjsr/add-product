@@ -18,7 +18,7 @@ import './Table.css';
 import Avatar from '@material-ui/core/Avatar';
 import { OutlinedInput } from '@material-ui/core';
 
-const filterBy =[{label: 'Price', value: 'Price'}, {label: 'Quantity', value: 'Quantity'}];
+const filterBy = [{ label: 'Price', value: 'Price' }, { label: 'Quantity', value: 'Quantity' }];
 
 class Table extends React.Component {
     constructor(props) {
@@ -26,94 +26,94 @@ class Table extends React.Component {
         this.state = {
             range: 0,
             searchInput: '',
-            list: [],
+            list: this.props.list,
             filterby: 'Price'
         }
     }
 
-    componentDidMount(){
-     this.setState({list: this.props.list });
+    componentDidMount() {
+        this.setState({ list: this.props.list });
     }
 
-    sortingByPrice =()=>{
+    sortingByPrice = () => {
         debugger
         let Data = this.props.list;
         if (this.state.filterby === 'Price' && Data) {
-        let d = Data.filter(f => ((f.price) <= this.state.range))
-        this.setState({ list: d });
+            let d = Data.filter(f => ((f.price) <= this.state.range))
+            this.setState({ list: d });
         }
-        else if(this.state.filterby === 'Quantity' && Data){
+        else if (this.state.filterby === 'Quantity' && Data) {
             let d = Data.filter(f => ((f.qty) <= this.state.range))
-        this.setState({ list: d });
+            this.setState({ list: d });
         }
     }
-    
+
     inputSearchHandler = (name, e) => {
         this.setState({ [name]: e.target.value }, () => {
             this.props.searchProduct(this.state.searchInput)
         });
     }
 
-    inputHandler = (name, e) =>{
-        console.log('c',e.target.value)
+    inputHandler = (name, e) => {
+        console.log('c', e.target.value)
         this.setState({ [name]: e.target.value });
     }
 
     render() {
-        const { list } = this.state;
+        const { list } = this.props;
         return (
             <div>
                 <Navbar />
                 <div style={{ padding: '5%' }}>
                     <Row>
-                        <Col sm="2">
-                        <Button style={{
-                        left: ' 2%',
-                            position: 'relative'
-                        }}
-                            onClick={() =>
-                                this.props.history.push(
-                                    '/product/new'
-                                )}
-                        >
-                            <i className="zmdi zmdi-collection-plus zmdi-hc-lg" />&nbsp;
+                        <Col sm="3">
+                            <Button style={{
+                                left: ' 2%',
+                                position: 'relative'
+                            }}
+                                onClick={() =>
+                                    this.props.history.push(
+                                        '/product/new'
+                                    )}
+                            >
+                                <i className="zmdi zmdi-collection-plus zmdi-hc-lg" />&nbsp;
                         Add Product
                         </Button>
                         </Col>
-                        <Col sm="2">
-                        <TextField id="outlined-search" label="Search field" 
-                        type="search" variant="outlined" 
-                        value={this.state.searchInput}
-                        onChange={(event) => this.inputSearchHandler('searchInput', event)}
-                        />
+                        <Col sm="3">
+                            <TextField id="outlined-search" label="Search field"
+                                type="search" variant="outlined"
+                                value={this.state.searchInput}
+                                onChange={(event) => this.inputSearchHandler('searchInput', event)}
+                            />
                         </Col>
                         <Col sm="4">
-                        <div>
-                        <div class="slidecontainer">
-                            <label>Filter By Price and Quantity</label>&nbsp;&nbsp;
-                        <FormControl variant="outlined" style={{width: '108px'}} >
-                         <Select
-                          value={this.state.filterby}
-                          onChange={(event) => this.inputHandler('filterby', event)
-                        }
-                        >
-                          {filterBy &&
-                            filterBy.map((type, index) => (
-                              <MenuItem key={type.label} value={type.value} selected>
-                                {type.label}
-                              </MenuItem>
-                            ))}
-                        </Select>
-                        </FormControl>
-                                <input type="range" min="1" max="599" value={this.state.range}
-                                    style={{ width: '100%' }}
-                                    onChange={(e)=> this.inputHandler('range', e)}
-                                /> 
+                            <div>
+                                <div class="slidecontainer">
+                                    <label>Filter By Price and Quantity</label>&nbsp;&nbsp;
+                        <FormControl variant="outlined" style={{ width: '108px' }} >
+                                        <Select
+                                            value={this.state.filterby}
+                                            onChange={(event) => this.inputHandler('filterby', event)
+                                            }
+                                        >
+                                            {filterBy &&
+                                                filterBy.map((type, index) => (
+                                                    <MenuItem key={type.label} value={type.value} selected>
+                                                        {type.label}
+                                                    </MenuItem>
+                                                ))}
+                                        </Select>
+                                    </FormControl>
+                                    <input type="range" min="1" max="599" value={this.state.range}
+                                        style={{ width: '100%' }}
+                                        onChange={(e) => this.inputHandler('range', e)}
+                                    />
+                                </div>
+                                <button className="filter" onClick={() => this.sortingByPrice()} >
+                                    Filter</button>
+                                <label><span>{this.state.filterby}: {this.state.range} - 599 </span></label>
                             </div>
-                            <button className="filter" onClick={() => this.sortingByPrice()} >
-                                Filter</button>
-                            <label><span>{this.state.filterby}: {this.state.range} - 599 </span></label>
-                        </div>
                         </Col>
                     </Row>
                     <ReactTable
@@ -137,7 +137,7 @@ class Table extends React.Component {
                                 Cell: (row) => {
                                     return (
                                         <span>
-                                        <Avatar alt="Cindy Baker" src={row.row._original.imageurl} />
+                                            <Avatar alt="Cindy Baker" src={row.row._original.imageurl} />
                                         </span>
                                     )
                                 }

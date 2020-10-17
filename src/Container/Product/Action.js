@@ -48,7 +48,7 @@ export const editProduct = (data) => {
     }
 }
 
-export const searchProduct = (searchInput) =>{
+export const searchProduct = (searchInput) => {
     return (dispatch, getState) => {
         const { productDetails } = getState().product;
         let filteredData = '';

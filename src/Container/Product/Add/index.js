@@ -52,7 +52,7 @@ const AddEdit = (props) => {
         }
     }
 
-   
+
 
     useEffect(() => {
         const { id } = props.match.params;
@@ -118,14 +118,13 @@ const AddEdit = (props) => {
                                     placeholder="Product Description"
                                     value={description}
                                     onChange={(event) => handleTextChange(event, "description")}
-                                    error={true}
                                 /><br /><br />
                                 <TextField
                                     className="textInput"
                                     placeholder="price"
                                     value={price}
                                     type="number"
-                                    InputProps={{ inputProps: { min: 0 }}}
+                                    InputProps={{ inputProps: { min: 0 } }}
                                     onChange={(event) => handleTextChange(event, "price")}
                                 /><br /><br />
                                 <TextField
@@ -133,7 +132,7 @@ const AddEdit = (props) => {
                                     placeholder="qty"
                                     value={qty}
                                     type="number"
-                                    InputProps={{ inputProps: { min: 0 }}}
+                                    InputProps={{ inputProps: { min: 0 } }}
                                     onChange={(event) => handleTextChange(event, "qty")}
                                 /><br /><br />
                                 <TextField

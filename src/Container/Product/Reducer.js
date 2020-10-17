@@ -68,7 +68,7 @@ export default (state = initialState, action) => {
         case types.CREATE_NEW_PRODUCT:
         case types.DELETE_PRODUCT:
         case types.EDIT_PRODUCT:
-        case types.SEARCH_PRODUCT:
+            // case types.SEARCH_PRODUCT:
             return {
                 ...state,
                 productDetails: action.payload,
