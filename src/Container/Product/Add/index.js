@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.secondary.main
     },
     form: {
-        width: "100%", // Fix IE 11 issue.
+        width: "100%",
         marginTop: theme.spacing(1)
     },
     submit: {
@@ -42,6 +42,17 @@ const AddEdit = (props) => {
     const [qty, setQty] = useState(null);
     const [imageurl, setImage] = useState('');
 
+    const uploadImg = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = function (ev) {
+                setImage(ev.target.result)
+            }.bind(this);
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    }
+
+   
 
     useEffect(() => {
         const { id } = props.match.params;
@@ -84,9 +95,6 @@ const AddEdit = (props) => {
         else if (name === "qty") {
             setQty(value);
         }
-        else if (name === "imageurl") {
-            setImage(value)
-        }
     };
 
     return (
@@ -96,9 +104,6 @@ const AddEdit = (props) => {
                 <div className={classes.paper}>
                     <form className={classes.form}>
                         <Row className="textAlgin">
-                            {/* <Col>
-                                <img src={signin} alt="signin" /><br /><br /><br />
-                            </Col> */}
                             <Col>
                                 {props.match.params.id ? <h1>Edit Product</h1> : <h1>Add Product</h1>}
                                 <TextField
@@ -113,12 +118,14 @@ const AddEdit = (props) => {
                                     placeholder="Product Description"
                                     value={description}
                                     onChange={(event) => handleTextChange(event, "description")}
+                                    error={true}
                                 /><br /><br />
                                 <TextField
                                     className="textInput"
                                     placeholder="price"
                                     value={price}
                                     type="number"
+                                    InputProps={{ inputProps: { min: 0 }}}
                                     onChange={(event) => handleTextChange(event, "price")}
                                 /><br /><br />
                                 <TextField
@@ -126,20 +133,18 @@ const AddEdit = (props) => {
                                     placeholder="qty"
                                     value={qty}
                                     type="number"
+                                    InputProps={{ inputProps: { min: 0 }}}
                                     onChange={(event) => handleTextChange(event, "qty")}
                                 /><br /><br />
                                 <TextField
                                     className="textInput"
                                     placeholder="image"
-                                    value={imageurl}
                                     type="file"
-                                    onChange={(event) => handleTextChange(event, "imageurl")}
+                                    onChange={(event) => uploadImg(event)}
                                 /><br /><br />
-
                                 <Button style={{ backgroundColor: '#6384f9', width: '18%' }}
                                     onClick={() => saveHandler()}
                                 >Add</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
                             <Button style={{ backgroundColor: '#6384f9' }}
                                     onClick={() => props.history.push('/product')}
                                 >Cancel</Button>

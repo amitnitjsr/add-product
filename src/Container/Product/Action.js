@@ -3,7 +3,7 @@ import * as types from './ActionTypes';
 export const addNewProduct = (data) => {
     const { name, description, price, qty, imageurl } = data;
     return (dispatch, getState) => {
-        const { productDetails } = getState().customer;
+        const { productDetails } = getState().product;
         const lastData = productDetails[productDetails.length - 1];
         const newData = [
             ...productDetails,
@@ -45,5 +45,24 @@ export const editProduct = (data) => {
             return data;
         })
         return dispatch({ type: types.EDIT_PRODUCT, payload: newData });
+    }
+}
+
+export const searchProduct = (searchInput) =>{
+    return (dispatch, getState) => {
+        const { productDetails } = getState().product;
+        let filteredData = '';
+        if (searchInput) {
+            filteredData = productDetails.filter(value => {
+                return value.name
+                    .toString()
+                    .toLowerCase()
+                    .includes(searchInput.toLowerCase())
+            })
+            return dispatch({ type: types.SEARCH_PRODUCT, payload: filteredData });
+        }
+        else {
+            return dispatch({ type: types.SEARCH_PRODUCT, payload: productDetails });
+        }
     }
 }

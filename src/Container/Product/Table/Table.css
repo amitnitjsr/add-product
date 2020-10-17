@@ -740,3 +740,36 @@
   border: none !important;
  border-box:none !important;
 }
+
+.filter {
+  /* width: 55px; */
+  border: none;
+  /* background: #f54251; */
+  background-color: #f54251; /* Green */
+  border: none;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px 0 #ffb3b3, 0 6px 20px 0 #ffb3b3;
+  position: relative;
+  margin-right: 36%;
+}
+.slidecontainer {
+  width: 70%;
+}
+.select{
+  width: 100px;
+}
+.selectInput{
+  outline-style: auto !important;
+    outline-color: lightgrey !important;
+    width: 90px !important;
+    padding: 2px !important;
+
+}
