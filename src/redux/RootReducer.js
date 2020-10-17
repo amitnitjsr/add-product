@@ -2,10 +2,12 @@ import storage from 'redux-persist/lib/storage'
 import { persistCombineReducers } from 'redux-persist'
 import BaseReducer from './BaseReducer';
 import product from '../Container/Product/Reducer';
+import login from '../redux/login/authentication.reducer';
 
 const rootReducer = {
     baseReducer: BaseReducer,
-    product
+    product,
+    login
 }
 
 export const persistConfig = {
@@ -13,6 +15,7 @@ export const persistConfig = {
     storage,
     blacklist: [
         'product',
+        'login'
     ]
 }
 

@@ -9,7 +9,7 @@ import App from './Container/home/App';
 import Product from './Container/Product/Table';
 import AddProduct from './Container/Product/Add';
 import PageNotFound from './Container/PageNotFound';
-import Login from './Container/Login/Login'
+import Login from './Container/Login/login1'
 // import PreLoading from './Component/PreLoading';
 
 
@@ -20,7 +20,7 @@ const routes = (props) => {
                 <Route
                     exact
                     path="/"
-                    component={App} />
+                    component={Login} />
                 <Route
                     exact
                     path="/product"

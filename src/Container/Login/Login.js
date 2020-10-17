@@ -1,28 +1,34 @@
 import React, { useEffect } from 'react';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import { connect } from "react-redux";
+import { withRouter } from 'react-router';
+import TextField from "@material-ui/core/TextField";
+// import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import * as action from '../../redux/login/authentication.reducer';
 // import { login } from '../../store/actions/auth';
 // import { useForm } from "react-hook-form";
 // import { getAuthToken } from "../../shared/helpers";
 
 function Login(props) {
-//   const { handleSubmit, register, errors } = useForm();
-//   const onSubmit = (data) => {
-//     props.loginApiCall(data);
+  //   const { handleSubmit, register, errors } = useForm();
+  //   const onSubmit = (data) => {
+  //     props.loginApiCall(data);
 
-//   }
-  
-const loginHandler =()=>{
-  console.log('loginHandler', props.history);
-//   props.history.push("/customer");
-}
+  //   }
+
+  const loginHandler = () => {
+    console.log('loginHandler', props.history);
+    //   props.history.push("/customer");
+    props.loginUser({ username: 'abc@gmail.com', password: '12345' })
+  }
   useEffect(() => {
     // if (props.auth.isAuthenticated && getAuthToken !== "")
     //   props.history.push("/dashboard");
     // ?return () => {
-      // cleanup
-// ?}
-  }, [props.auth]);
+    // cleanup
+    // ?}
+  }, [props.login]);
 
 
   return (
@@ -105,4 +111,18 @@ const loginHandler =()=>{
 // }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Login);
-export default Login;
+
+const mapStateToProps = (state) => {
+  return {
+    list: state.product.productDetails,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    ...action
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login))
+// export default Login;
