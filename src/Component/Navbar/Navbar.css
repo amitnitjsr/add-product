@@ -38,3 +38,10 @@ a:hover {
     text-decoration: none;
     background-color: transparent;
 }
+.logout{
+    color: red;
+    cursor: pointer;
+}
+.user{
+    color:blue;
+}

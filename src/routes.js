@@ -9,7 +9,9 @@ import App from './Container/home/App';
 import Product from './Container/Product/Table';
 import AddProduct from './Container/Product/Add';
 import PageNotFound from './Container/PageNotFound';
-import Login from './Container/Login/login1'
+import Signin from './Container/Login/Signin';
+import Signup from './Container/Login/Signup';
+
 // import PreLoading from './Component/PreLoading';
 
 
@@ -20,7 +22,11 @@ const routes = (props) => {
                 <Route
                     exact
                     path="/"
-                    component={Login} />
+                    component={Signin} />
+                <Route
+                    exact
+                    path="/signup"
+                    component={Signup} />
                 <Route
                     exact
                     path="/product"

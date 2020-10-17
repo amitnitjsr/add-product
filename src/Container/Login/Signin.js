@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,8 +8,11 @@ import { connect } from "react-redux";
 import Checkbox from '@material-ui/core/Checkbox';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Row, Col, Button } from 'reactstrap';
+import * as action from '../../redux/login/Action';
+import { bindActionCreators } from 'redux';
 import signin from './../../asset/images/signin-image.webp';
-import './Login.css';
+import './Css.css';
+// import { Route, Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -41,14 +45,10 @@ const SignIn = (props) => {
     const [pswVal, setpswVal] = useState(true);
 
     const handlePasswordValidation = () => {
-
-        // props.loginData.map((val) => {
-        //     if (val.name === name && val.password === password) {
-        //         props.signInFun(true);
-        //         props.history.push('./home')
-        //     }
-        //     return null;
-        // });
+        props.loginUser({ "username": name, "password": password });
+        if (JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).isSignIn === true) {
+            props.history.push('/product');
+        }
     };
 
     const handleTextChange = (event, name) => {
@@ -82,10 +82,10 @@ const SignIn = (props) => {
                             <Link to='/signup'><span style={{ textDecoration: 'underline' }}>Create an account</span></Link>
                         </Col>
                         <Col>
-                            <h1>Sign up</h1>
+                            <h1>Sign In</h1>
                             <TextField
                                 id="input-with-icon-textfield"
-                                placeholder="Your Name"
+                                placeholder="User Name"
                                 error={nameVal}
                                 onChange={(event) => handleTextChange(event, "name")}
                                 InputProps={{
@@ -130,28 +130,19 @@ const SignIn = (props) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        loginData: state.loginData
-    };
-};
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = (state) => {
     return {
-        signInFun: (isSignedIn) => {
-            dispatch({
-                type: 'signInFun',
-                payload: {
-                    "isSignedIn": isSignedIn
-                }
-            })
-        },
-    };
-};
+        login: state.login.login,
+    }
+}
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SignIn);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        ...action
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SignIn))
 
 

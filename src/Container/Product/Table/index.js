@@ -12,11 +12,10 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
 import Select from '@material-ui/core/Select';
-import * as action from '../Action';
+import * as action from '../../../redux/product/Action';
 import Navbar from '../../../Component/Navbar/Navbar';
 import './Table.css';
 import Avatar from '@material-ui/core/Avatar';
-import { OutlinedInput } from '@material-ui/core';
 
 const filterBy = [{ label: 'Price', value: 'Price' }, { label: 'Quantity', value: 'Quantity' }];
 

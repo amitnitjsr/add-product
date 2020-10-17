@@ -5,12 +5,42 @@ export const loginUser = (data) => {
     const { username, password } = data;
     return (dispatch, getState) => {
         const { login } = getState().login;
-        // loggingIn: true,
-        //         user: action.user
-        let user = {
-            loggingIn: true,
-            user: action.user
+        for (let i = 0; i < login.length; i++) {
+            if (login[i].username === username && login[i].password === password) {
+                let user = {
+                    username: login[i].username, password: login[i].password, isSignIn: true
+                }
+                localStorage.setItem('user', JSON.stringify(user));
+            }
         }
-        return dispatch({ type: types.LOGIN, payload: user });
+        return dispatch({ type: types.LOGIN, payload: login });
+    }
+}
+
+export const createUser = (data) => {
+    const { username, password, email } = data;
+    debugger
+    return (dispatch, getState) => {
+        const { login } = getState().login;
+        const newData = [
+            ...login,
+            {
+                'username': username,
+                'password': password,
+                'email': email,
+            }
+        ]
+        console.log('create', newData)
+        return dispatch({ type: types.CREATE, payload: newData });
+    }
+}
+
+export const logoutUser = (data) => {
+    debugger
+    // const { username, password } = data;
+    return (dispatch, getState) => {
+        const { login } = getState().login;
+        localStorage.removeItem('user');
+        return dispatch({ type: types.LOGIN, payload: login });
     }
 }

@@ -1,14 +1,15 @@
 
-import * as type from './ActionTypes';
+import * as types from './ActionTypes';
 
 const initialState = {
-    login: { username: 'abc@gmail.com', password: '12345' }
+    login: [{ username: 'demo_app', password: '12345', email: 'abc@gmail.com' }]
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'LOGIN':
-        case 'LOGOUT':
+        case types.LOGIN:
+        case types.LOGOUT:
+        case types.CREATE:
             return {
                 ...state,
                 login: action.payload,

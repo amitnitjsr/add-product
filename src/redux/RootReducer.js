@@ -1,8 +1,8 @@
 import storage from 'redux-persist/lib/storage'
 import { persistCombineReducers } from 'redux-persist'
 import BaseReducer from './BaseReducer';
-import product from '../Container/Product/Reducer';
-import login from '../redux/login/authentication.reducer';
+import product from './product/Reducer';
+import login from './login/Reducer';
 
 const rootReducer = {
     baseReducer: BaseReducer,
