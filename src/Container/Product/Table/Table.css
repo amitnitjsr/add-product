@@ -773,3 +773,6 @@
     padding: 2px !important;
 
 }
+.text-center{
+  overflow: hidden !important;
+}

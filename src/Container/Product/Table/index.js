@@ -134,6 +134,14 @@ class Table extends React.Component {
                                 accessor: 'description',
                                 foldable: true,
                                 className: 'text-center',
+                                // overflow: 'hidden',
+                                // Cell: (row) => {
+                                //     return (
+                                //         <span style={{ overflow: 'hidden' }}>
+                                //             {row.row._original.description}
+                                //         </span>
+                                //     )
+                                // }
                             },
                             {
                                 Header: () => <div className="Header" >Price</div>,
