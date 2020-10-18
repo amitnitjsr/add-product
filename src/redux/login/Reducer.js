@@ -3,7 +3,6 @@ import * as types from './ActionTypes';
 
 const initialState = {
     login: [{ username: 'demo_app', password: '12345', email: 'abc@gmail.com' }],
-    isAuthenticate: false
 }
 
 export default (state = initialState, action) => {
@@ -14,7 +13,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 login: action.payload,
-                isAuthenticate: action.payload.isAuthenticate
             }
         default:
             return state

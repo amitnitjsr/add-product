@@ -16,7 +16,6 @@ import './Table.css';
 import Avatar from '@material-ui/core/Avatar';
 
 const filterBy = [{ label: 'Price', value: 'Price' }, { label: 'Quantity', value: 'Quantity' }];
-
 class Table extends React.Component {
     constructor(props) {
         super(props);

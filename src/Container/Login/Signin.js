@@ -5,14 +5,12 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { connect } from "react-redux";
-import Checkbox from '@material-ui/core/Checkbox';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Row, Col, Button } from 'reactstrap';
 import * as action from '../../redux/login/Action';
 import { bindActionCreators } from 'redux';
 import signin from './../../asset/images/signin-image.webp';
 import './Css.css';
-// import { Route, Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     paper: {

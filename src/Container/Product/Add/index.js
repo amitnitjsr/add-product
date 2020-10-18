@@ -48,7 +48,7 @@ const AddEdit = (props) => {
             let reader = new FileReader();
             reader.onload = function (ev) {
                 setImage(ev.target.result)
-            }.bind(this);
+            }.bind();
             reader.readAsDataURL(e.target.files[0]);
         }
     }
@@ -99,14 +99,14 @@ const AddEdit = (props) => {
         }
         else if (name === "price") {
             setPrice(value);
-            if (!value)
+            if (!value || value > 599)
                 setPriceVal(true);
             else
                 setPriceVal(false);
         }
         else if (name === "qty") {
             setQty(value);
-            if (!value)
+            if (!value || value > 599)
                 setQtyVal(true);
             else
                 setQtyVal(false);
@@ -141,7 +141,7 @@ const AddEdit = (props) => {
                                     placeholder="price *"
                                     value={price}
                                     type="number"
-                                    InputProps={{ inputProps: { min: 1 } }}
+                                    InputProps={{ inputProps: { min: 1, max: 599 } }}
                                     onChange={(event) => handleTextChange(event, "price")}
                                     error={priceVal}
                                 /><br /><br />
@@ -150,7 +150,7 @@ const AddEdit = (props) => {
                                     placeholder="qty *"
                                     value={qty}
                                     type="number"
-                                    InputProps={{ inputProps: { min: 1 } }}
+                                    InputProps={{ inputProps: { min: 1, max: 599 } }}
                                     onChange={(event) => handleTextChange(event, "qty")}
                                     error={qtyVal}
                                 /><br /><br />
