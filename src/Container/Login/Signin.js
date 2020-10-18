@@ -110,18 +110,11 @@ const SignIn = (props) => {
                                     ),
                                 }}
                             /><br /><br />
-                            <Checkbox
-                            /> Rember me
-                            <br /><br />
                             <Button style={{ backgroundColor: '#6384f9' }}
                                 onClick={() => handlePasswordValidation()}
                                 disabled={nameVal || pswVal}
                             >Log in</Button>
                             <br /><br />
-                            Or login with
-                            <Button style={{ color: 'white', backgroundColor: '#3434ef', margin: '7px', width: '42px' }}><i className="zmdi zmdi-facebook"></i></Button>
-                            <Button style={{ color: 'white', backgroundColor: '#389ced', margin: '5px' }}><i className="zmdi zmdi-twitter"></i></Button>
-                            <Button className="red"><i className="zmdi zmdi-google"></i></Button>
                         </Col>
                     </Row>
                 </form>

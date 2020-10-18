@@ -161,11 +161,8 @@ const Signup = props => {
                         </Col>
                         <Col>
                             <img src={signup} alt="signup" /><br />
-                            <span style={{ textDecoration: 'underline' }}>I am already member</span>
                         </Col>
                     </Row>
-
-
                 </form>
             </div>
         </Container>
