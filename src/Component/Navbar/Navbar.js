@@ -57,14 +57,20 @@ function Navbar(props) {
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                    <Col className="col-md-2 col-sm-2 ml-auto">
-                        <span className="user">
-                            {username}
-                        </span>&nbsp;&nbsp;
-                        <span className="logout" onClick={() => logOut()}>
-                            Logout
-                        </span>
-                    </Col>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <span className="float-left user">
+                                    Login User : {username}
+                                </span>
+                            </div>
+                            <div class="col" style={{ textAlign: 'end' }}>
+                                <span className="float-right logout" onClick={() => logOut()}>
+                                    Logout
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
                 </Toolbar>
             </AppBar>
         </div >
