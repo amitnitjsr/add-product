@@ -7,13 +7,11 @@ import Signin from './Container/Login/Signin';
 import Signup from './Container/Login/Signup';
 import PageNotFound from './Container/PageNotFound';
 import PrivateRoute from './routers/PrivateRoute';
-// import PreLoading from './Component/PreLoading';
 import DefaultLayout from './routers/defaultLayout';
-// import { addNewProduct } from './redux/product/Action';
 import Product from './Container/Product/Table';
 import AddProduct from './Container/Product/Add';
 
-const App = (props) => {
+const App = () => {
   return (
     <BrowserRouter>
       <React.StrictMode>

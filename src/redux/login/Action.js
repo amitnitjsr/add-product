@@ -12,7 +12,6 @@ export const loginUser = (data) => {
                 localStorage.setItem('user', JSON.stringify(user));
             }
         }
-        console.log('login', login)
         return dispatch({ type: types.LOGIN, payload: login });
     }
 }
@@ -33,7 +32,7 @@ export const createUser = (data) => {
     }
 }
 
-export const logoutUser = (data) => {
+export const logoutUser = () => {
     return (dispatch, getState) => {
         const { login } = getState().login;
         localStorage.removeItem('user');

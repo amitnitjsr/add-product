@@ -96,7 +96,7 @@ const Signup = props => {
                             <h1>Sign up</h1>
                             <TextField
                                 id="input-with-icon-textfield"
-                                placeholder="Your Name"
+                                placeholder="User Name"
                                 error={nameVal}
                                 onChange={(event) => handleTextChange(event, "name")}
                                 InputProps={{
