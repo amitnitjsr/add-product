@@ -6,11 +6,9 @@ import { withRouter } from 'react-router';
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-
 import Select from '@material-ui/core/Select';
 import * as action from '../../../redux/product/Action';
 import Navbar from '../../../Component/Navbar/Navbar';
@@ -25,26 +23,12 @@ class Table extends React.Component {
         this.state = {
             range: 0,
             searchInput: '',
-            list: this.props.list,
             filterby: 'Price'
         }
     }
 
-    componentDidMount() {
-        this.setState({ list: this.props.list });
-    }
-
     sortingByPrice = () => {
-        debugger
-        let Data = this.props.list;
-        if (this.state.filterby === 'Price' && Data) {
-            let d = Data.filter(f => ((f.price) <= this.state.range))
-            this.setState({ list: d });
-        }
-        else if (this.state.filterby === 'Quantity' && Data) {
-            let d = Data.filter(f => ((f.qty) <= this.state.range))
-            this.setState({ list: d });
-        }
+        this.props.filterProduct({ 'filterBy': this.state.filterby, 'range': this.state.range });
     }
 
     inputSearchHandler = (name, e) => {

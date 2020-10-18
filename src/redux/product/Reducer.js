@@ -11,6 +11,7 @@ export default (state = initialState, action) => {
         case types.DELETE_PRODUCT:
         case types.EDIT_PRODUCT:
         case types.SEARCH_PRODUCT:
+        case types.FILTER_PRODUCT:
             return {
                 ...state,
                 productDetails: action.payload,

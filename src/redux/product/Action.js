@@ -54,7 +54,7 @@ export const searchProduct = (searchInput) => {
         const { productDetails } = getState().product;
         let filteredData = '';
         if (searchInput) {
-            filteredData = productDetails.filter(value => {
+            filteredData = Data.filter(value => {
                 return value.name
                     .toString()
                     .toLowerCase()
@@ -64,6 +64,24 @@ export const searchProduct = (searchInput) => {
         }
         else {
             return dispatch({ type: types.SEARCH_PRODUCT, payload: Data });
+        }
+    }
+}
+
+export const filterProduct = (data) => {
+    const { filterBy, range } = data;
+    return (dispatch, getState) => {
+        const { productDetails } = getState().product;
+        let filteredData = '';
+        if (filterBy === 'Price' && Data) {
+            filteredData = Data.filter(f => ((f.price) <= parseInt(range)))
+            console.log('filteredData', filteredData)
+            return dispatch({ type: types.FILTER_PRODUCT, payload: filteredData });
+        }
+        else if (filterBy === 'Quantity' && Data) {
+            filteredData = Data.filter(f => ((f.qty) <= parseInt(range)))
+            console.log('filteredData', filteredData)
+            return dispatch({ type: types.FILTER_PRODUCT, payload: filteredData });
         }
     }
 }

@@ -1,7 +1,6 @@
 import * as types from './ActionTypes';
 
 export const loginUser = (data) => {
-    debugger
     const { username, password } = data;
     return (dispatch, getState) => {
         const { login } = getState().login;
@@ -19,7 +18,6 @@ export const loginUser = (data) => {
 
 export const createUser = (data) => {
     const { username, password, email } = data;
-    debugger
     return (dispatch, getState) => {
         const { login } = getState().login;
         const newData = [
@@ -30,14 +28,11 @@ export const createUser = (data) => {
                 'email': email,
             }
         ]
-        console.log('create', newData)
         return dispatch({ type: types.CREATE, payload: newData });
     }
 }
 
 export const logoutUser = (data) => {
-    debugger
-    // const { username, password } = data;
     return (dispatch, getState) => {
         const { login } = getState().login;
         localStorage.removeItem('user');

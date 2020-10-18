@@ -5,9 +5,7 @@ import * as action from '../../../redux/product/Action';
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { Row, Col, Button } from 'reactstrap';
-import signin from '../../../asset/images/signin-image.webp';
 import Navbar from '../../../Component/Navbar/Navbar';
 import './AddEdit.css';
 
@@ -41,6 +39,9 @@ const AddEdit = (props) => {
     const [price, setPrice] = useState(null);
     const [qty, setQty] = useState(null);
     const [imageurl, setImage] = useState('');
+    const [nameVal, setNameVal] = useState(true);
+    const [priceVal, setPriceVal] = useState(true)
+    const [qtyVal, setQtyVal] = useState(true);
 
     const uploadImg = (e) => {
         if (e.target.files && e.target.files[0]) {
@@ -58,6 +59,9 @@ const AddEdit = (props) => {
         const { id } = props.match.params;
         const { list } = props;
         if (id) {
+            setNameVal(false);
+            setQtyVal(false);
+            setPriceVal(false);
             const finalList = list.filter(d => d.id === parseInt(id));
             if (finalList.length) {
                 const data = finalList[0];
@@ -88,12 +92,24 @@ const AddEdit = (props) => {
         }
         else if (name === "name") {
             setName(value);
+            if (!value || value.trim().length === 0)
+                setNameVal(true);
+            else
+                setNameVal(false);
         }
         else if (name === "price") {
             setPrice(value);
+            if (!value)
+                setPriceVal(true);
+            else
+                setPriceVal(false);
         }
         else if (name === "qty") {
             setQty(value);
+            if (!value)
+                setQtyVal(true);
+            else
+                setQtyVal(false);
         }
     };
 
@@ -108,10 +124,11 @@ const AddEdit = (props) => {
                                 {props.match.params.id ? <h1>Edit Product</h1> : <h1>Add Product</h1>}
                                 <TextField
                                     className="textInput"
-                                    placeholder="Product Name"
+                                    placeholder="Product Name *"
                                     value={name}
                                     onChange={(event) => handleTextChange(event, "name")}
                                     type="text"
+                                    error={nameVal}
                                 /><br /><br />
                                 <TextField
                                     className="textInput"
@@ -121,19 +138,21 @@ const AddEdit = (props) => {
                                 /><br /><br />
                                 <TextField
                                     className="textInput"
-                                    placeholder="price"
+                                    placeholder="price *"
                                     value={price}
                                     type="number"
-                                    InputProps={{ inputProps: { min: 0 } }}
+                                    InputProps={{ inputProps: { min: 1 } }}
                                     onChange={(event) => handleTextChange(event, "price")}
+                                    error={priceVal}
                                 /><br /><br />
                                 <TextField
                                     className="textInput"
-                                    placeholder="qty"
+                                    placeholder="qty *"
                                     value={qty}
                                     type="number"
-                                    InputProps={{ inputProps: { min: 0 } }}
+                                    InputProps={{ inputProps: { min: 1 } }}
                                     onChange={(event) => handleTextChange(event, "qty")}
+                                    error={qtyVal}
                                 /><br /><br />
                                 <TextField
                                     className="textInput"
@@ -143,6 +162,7 @@ const AddEdit = (props) => {
                                 /><br /><br />
                                 <Button style={{ backgroundColor: '#6384f9', width: '18%' }}
                                     onClick={() => saveHandler()}
+                                    disabled={nameVal || qtyVal || priceVal}
                                 >Add</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <Button style={{ backgroundColor: '#6384f9' }}
                                     onClick={() => props.history.push('/product')}

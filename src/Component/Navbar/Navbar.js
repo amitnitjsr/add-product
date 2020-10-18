@@ -57,10 +57,7 @@ function Navbar(props) {
         <div className={classes.root}>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
-                    <Col className="col-md-3 col-sm-2 ml-auto">
-                        {/* <Link to='/customer' className="link" >
-                            <i className="zmdi zmdi-home zmdi-hc-lg"></i>
-                        </Link> */}
+                    <Col className="col-md-2 col-sm-2 ml-auto">
                         <span className="user">
                             {username}
                         </span>&nbsp;&nbsp;

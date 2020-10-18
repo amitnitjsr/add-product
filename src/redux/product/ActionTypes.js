@@ -7,3 +7,5 @@ export const DELETE_PRODUCT = pre + 'DELETE_PRODUCT'
 export const EDIT_PRODUCT = pre + 'EDIT_PRODUCT'
 
 export const SEARCH_PRODUCT = pre + 'SEARCH_PRODUCT'
+
+export const FILTER_PRODUCT = pre + 'FILTER_PRODUCT'

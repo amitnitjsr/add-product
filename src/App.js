@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { persistor, store } from './redux/Store';
 import { PersistGate } from 'redux-persist/integration/react'
 import Routes from './routes';
+import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
 // import PreLoading from './Component/PreLoading';
 
 const App = (props) => {
@@ -13,7 +14,9 @@ const App = (props) => {
           // loading={PreLoading}
           persistor={persistor}>
           {Routes}
+
         </PersistGate>
+        {/* <PrivateRoute path='/' component={Routes} /> */}
       </Provider>
     </React.StrictMode>
   );
