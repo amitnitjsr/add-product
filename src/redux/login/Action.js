@@ -2,14 +2,17 @@ import * as types from './ActionTypes';
 
 export const loginUser = (data) => {
     const { username, password } = data;
+    debugger
     return (dispatch, getState) => {
         const { login } = getState().login;
+        login.isAuthenticate = false;
         for (let i = 0; i < login.length; i++) {
             if (login[i].username === username && login[i].password === password) {
                 let user = {
                     username: login[i].username, password: login[i].password, isSignIn: true
                 }
                 localStorage.setItem('user', JSON.stringify(user));
+                login.isAuthenticate = true;
             }
         }
         return dispatch({ type: types.LOGIN, payload: login });

@@ -1,9 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux'
 import { persistor, store } from './redux/Store';
-import { PersistGate } from 'redux-persist/integration/react'
-import Routes from './routes';
-import PrivateRoute from './Component/PrivateRoute/PrivateRoute';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Route } from 'react-router-dom';
+import Routes from './routers/routes';
+import Signin from './Container/Login/Signin';
+import Signup from './Container/Login/Signup';
+import PageNotFound from './Container/PageNotFound';
+import PrivateRoute from './routers/PrivateRoute';
 // import PreLoading from './Component/PreLoading';
 
 const App = (props) => {
@@ -13,10 +17,20 @@ const App = (props) => {
         <PersistGate
           // loading={PreLoading}
           persistor={persistor}>
-          {Routes}
-
+          <Routes />
+          {/* <PrivateRoute exact path="/" component={Routes} /> */}
+          {/* <Route
+            exact
+            path="/"
+            component={Signin} /> */}
+          {/* <Route
+            exact
+            path="/signup"
+            component={Signup} />
+          <Route
+            path=""
+            component={PageNotFound} /> */}
         </PersistGate>
-        {/* <PrivateRoute path='/' component={Routes} /> */}
       </Provider>
     </React.StrictMode>
   );

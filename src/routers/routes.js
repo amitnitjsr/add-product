@@ -5,12 +5,12 @@ import {
     Route,
 } from "react-router-dom";
 
-import App from './Container/home/App';
-import Product from './Container/Product/Table';
-import AddProduct from './Container/Product/Add';
-import PageNotFound from './Container/PageNotFound';
-import Signin from './Container/Login/Signin';
-import Signup from './Container/Login/Signup';
+import App from '../Container/home/App';
+import Product from '../Container/Product/Table';
+import AddProduct from '../Container/Product/Add';
+import PageNotFound from '../Container/PageNotFound';
+import Signin from '../Container/Login/Signin';
+import Signup from '../Container/Login/Signup';
 
 // import PreLoading from './Component/PreLoading';
 
@@ -48,3 +48,5 @@ const routes = (props) => {
 }
 
 export default routes;
+
+
