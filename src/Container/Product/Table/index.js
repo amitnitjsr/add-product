@@ -23,17 +23,51 @@ class Table extends React.Component {
             range: 0,
             searchInput: '',
             filterby: 'Price',
-            filterData: []
+            list: []
         }
     }
 
+    componentDidMount() {
+        this.setState({ list: this.props.list });
+    }
+
     sortingByPrice = () => {
-        this.props.filterProduct({ 'filterBy': this.state.filterby, 'range': this.state.range });
+        let filteredData = '';
+        if (this.state.filterby === 'Price') {
+            filteredData = this.props.list.filter(f => ((f.price) <= parseInt(this.state.range)))
+            this.setState({ list: filteredData });
+        }
+        else if (this.state.filterby === 'Quantity') {
+            filteredData = this.props.list.filter(f => ((f.qty) <= parseInt(this.state.range)))
+            this.setState({ list: filteredData });
+        }
+    }
+
+    clearFilter = () => {
+        this.setState({ list: this.props.list });
+    }
+
+    deleteHandler = (id) => {
+        this.props.deleteProduct({ 'id': id });
+        const newData = this.props.list && this.props.list.filter((data) => data.id !== id);
+        this.setState({ list: newData });
     }
 
     inputSearchHandler = (name, e) => {
         this.setState({ [name]: e.target.value }, () => {
-            this.props.searchProduct(this.state.searchInput)
+            let filteredData = '';
+            if (this.state.searchInput) {
+                filteredData = this.props.list.filter(value => {
+                    return value.name
+                        .toString()
+                        .toLowerCase()
+                        .includes(this.state.searchInput.toLowerCase())
+                })
+                this.setState({ list: filteredData })
+            }
+            else {
+                this.setState({ list: this.props.list })
+            }
         });
     }
 
@@ -42,7 +76,7 @@ class Table extends React.Component {
     }
 
     render() {
-        const { list } = this.props;
+        const { list } = this.state;
         return (
             <div>
                 <Navbar />
@@ -94,7 +128,10 @@ class Table extends React.Component {
                                 </div>
                                 <button className="filter" onClick={() => this.sortingByPrice()} >
                                     Filter</button>
+                                <button className="filter" onClick={() => this.clearFilter()} >
+                                    Clear Filter</button>
                                 <label><span>{this.state.filterby}: {this.state.range} - 599 </span></label>
+
                             </div>
                         </Col>
                     </Row>
@@ -167,7 +204,7 @@ class Table extends React.Component {
                                                 <i className="zmdi zmdi-edit zmdi-hc-fnewstatusw table-icon" />
                                             </IconButton>
                                             <IconButton
-                                                onClick={() => this.props.deleteProduct({ 'id': row.row._original.id })}
+                                                onClick={() => this.deleteHandler(row.row._original.id)}
                                             >
                                                 <i className="zmdi zmdi-delete zmdi-hc-fw table-icon" />
                                             </IconButton>

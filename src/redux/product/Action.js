@@ -1,5 +1,5 @@
 import * as types from './ActionTypes';
-import Data from '../../asset/data/data';
+// import Data from '../../asset/data/data';
 
 export const addNewProduct = (data) => {
     const { name, description, price, qty, imageurl } = data;
@@ -49,37 +49,3 @@ export const editProduct = (data) => {
     }
 }
 
-export const searchProduct = (searchInput) => {
-    return (dispatch, getState) => {
-        // const { productDetails } = getState().product;
-        let filteredData = '';
-        if (searchInput) {
-            filteredData = Data.filter(value => {
-                return value.name
-                    .toString()
-                    .toLowerCase()
-                    .includes(searchInput.toLowerCase())
-            })
-            return dispatch({ type: types.SEARCH_PRODUCT, payload: filteredData });
-        }
-        else {
-            return dispatch({ type: types.SEARCH_PRODUCT, payload: Data });
-        }
-    }
-}
-
-export const filterProduct = (data) => {
-    const { filterBy, range } = data;
-    return (dispatch, getState) => {
-        // const { productDetails } = getState().product;
-        let filteredData = '';
-        if (filterBy === 'Price' && Data) {
-            filteredData = Data.filter(f => ((f.price) <= parseInt(range)))
-            return dispatch({ type: types.FILTER_PRODUCT, payload: filteredData });
-        }
-        else if (filterBy === 'Quantity' && Data) {
-            filteredData = Data.filter(f => ((f.qty) <= parseInt(range)))
-            return dispatch({ type: types.FILTER_PRODUCT, payload: filteredData });
-        }
-    }
-}
